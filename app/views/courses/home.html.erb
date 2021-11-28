@@ -1,0 +1,27 @@
+<%= render "nav"%>
+<% if user_signed_in? %> 
+<h1 style="text-align:center">All Courses</h1>
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+<%
+=begin%>
+ <h3><%= link_to "New Course", new_course_path %></h3> 
+<%
+=end%>
+<% else %>
+<h1 style="text-align:center">Total Courses</h1>
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+<h1 style="text-align:center; padding:auto"><%= link_to "Login", new_user_session_path, class:"text-decoration-none"%> to enroll</h1>
+<% end %>
+<%= render "foot" %>

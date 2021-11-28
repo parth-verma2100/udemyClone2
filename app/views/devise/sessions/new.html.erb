@@ -1,0 +1,38 @@
+<%= render "courses/nav" %>
+<p class="fs-6 pt-3 pb-2 me-3 d-grid col-md-3 offset-md-4 fw-bold" style="text-align:center">Log In to Your Udemy Account!</p>
+
+<hr class="d-grid col-md-3 offset-md-4 fw-bold">
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field btn-lg d-grid col-md-3 offset-md-4" style="text-align:center">
+  
+  <div class="border d-inline border-dark border-1 ml-2 mb-2">
+    <div class="field ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-3 bi-envelope-fill" viewBox="0 0 16 16">
+  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+</svg>
+<%= f.email_field :email,placeholder: "Email", autofocus: true, autocomplete: "email",class:"text-decoration-none shadow-none col-md-10 offset-md-0 fs-5", style:"outline-none"%>
+</div>
+</div>
+
+<div class="border border-dark border-1 ">
+    <div class=" field">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-2 bi-lock-fill" viewBox="0 0 16 16">
+  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+</svg>
+    <%= f.password_field :password,placeholder: "Password", autocomplete: "current-password",class:"text-decoration-none shadow-none col-md-10 offset-md-0 fs-5" %>  </div>
+  </div>
+  </div>
+  <% if devise_mapping.rememberable? %>
+    <div class="field col-md-3 offset-md-4" style="text-align:center">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+  <div class="btn-lg d-grid col-md-3 offset-md-4">
+  <div class="actions " style="text-align:center">
+    <%= f.submit "Log in", class:"btn btn-primary rounded-0 col-md-12 offset-md-0"%>
+  </div>
+  </div>
+<% end %>
+<%= render "devise/shared/links" %>
+<%= render "courses/foot" %>

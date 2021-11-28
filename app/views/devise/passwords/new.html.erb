@@ -1,0 +1,28 @@
+<%= render "courses/nav" %>
+<p class="s-6 pt-3 pb-2 me-3 d-grid col-md-3 offset-md-4 fw-bold" style="text-align:center">Forgot your password?</p>
+<hr class="d-grid col-md-3 offset-md-4 fw-bold">
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field btn-lg d-grid col-md-3 offset-md-4" style="text-align:center">
+  <div class="border border-dark border-1 ml-2 mb-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-3 bi-envelope-fill" viewBox="0 0 16 16">
+  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+</svg>
+    <%= f.email_field :email, placeholder:"Email",autofocus: true, autocomplete: "email", class:"ext-decoration-none shadow-none col-md-9 offset-md-0 fs-5"%>
+  </div>
+  </div>
+  <div class="btn-lg d-grid col-md-3 offset-md-4">
+  <div class="actions " style="text-align:center">
+    <%= f.submit "Send me reset password instructions", class:"btn btn-primary rounded-0 col-md-12 offset-md-0"%>
+  </div>
+  </div>
+  <%
+=begin%>
+ <div class="actions btn-lg" style="text-align:center">
+    <%= f.submit "Send me reset password instructions" ,class:"btn btn-primary border-1 border-light rounded-0"%>
+  </div> 
+<%
+=end%>
+<% end %>
+
+<%= render "devise/shared/links" %>

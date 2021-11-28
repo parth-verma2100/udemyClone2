@@ -1,0 +1,33 @@
+<%= form_with model: [@course, @course.videos.build] do |form| %>
+  <div>
+    <%= form.label :Video_Title %><br>
+    <%= form.text_field :title %>
+    <%
+=begin%>
+ <% video.errors.full_messages_for(:vid_title).each do |message| %>
+      <div><%= message %></div>
+    <% end %> 
+<%
+=end%>
+  </div>
+
+
+    <div>
+    <%= form.label :Url %><br>
+    <%= form.text_field :url %><br>
+    <%
+=begin%>
+ <% video.errors.full_messages_for(:url).each do |message| %>
+      <div><%= message %></div>
+    <% end %> 
+<%
+=end%>
+  </div>
+  <div>
+    <h2><%= form.submit %></h2>
+  </div>
+  <ul>
+   <li>
+  <%= link_to "Home", root_path%></li>
+  </ul>
+<% end %>

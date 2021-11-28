@@ -1,0 +1,49 @@
+<%= render "nav"%>
+<% if user_signed_in? %>
+<% if current_user.user_role.downcase == "instructor" %>
+ <h1 style="text-align:center">
+Created Courses</h1>
+<% if @usercourse.size==0 %>
+<h3 style="color:red">
+No Courses Created yet...</h3>
+Create new course <%= link_to "here", new_course_path, style:"text-decoration:none" %>
+<% else %>
+ <ul>
+  <% @usercourse.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course,  style:"text-decoration:none"%>
+    </li>
+  <% end %>
+</ul>
+Create new course <%= link_to "here", new_course_path, style:"text-decoration:none"%>
+<% end %>
+<% else %>
+<h1 style="text-align:center">
+My Courses</h1>
+ <ul>
+  <% @reqcourse.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+<%
+=begin%>
+ 
+<%
+=end%>
+<% else %>
+<h1 style="text-align:center">Total Courses</h1>
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+
+<h1 style="text-align:center; padding:auto"><%= link_to "Login", new_user_session_path, class:"text-decoration-none"%> to enroll</h1>
+<% end %>
+<%= render "foot" %>

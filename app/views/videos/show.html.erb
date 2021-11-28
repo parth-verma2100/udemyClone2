@@ -1,0 +1,19 @@
+<%= render "nav" %>
+<% if user_signed_in?  %>
+<h2>Title: </h2><%= @video.title %>
+<h2> Url: </h2><%= @video.url %>
+<ul>
+  <li><%= link_to "Home", root_path%>
+</ul>
+<% else %>
+<h2>Title: </h2><%= @video.vid_title %>
+<h2> Url: </h2><%= @video.url %>
+<ul>
+  <li>
+  <%= link_to "Edit", edit_course_video_path(@course, @video) %>  | <%= link_to "Home", root_path%> | 
+  <%= link_to "Delete", course_video_path(@course),
+                  method: :delete,
+                  data: { confirm: "Are you sure" } %></li>
+</ul> 
+<% end %>
+<%= render "foot" %>

@@ -1,0 +1,58 @@
+<%= render "courses/nav" %>
+<p class="fs-6 pt-3 pb-2 me-3 d-grid col-md-3 offset-md-4 fw-bold" style="text-align:center">Sign Up and Start Learning!</p>
+
+<hr class="d-grid col-md-3 offset-md-4 fw-bold">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field btn-lg d-grid col-md-3 offset-md-4" style="text-align:center">
+  <div class="border border-dark border-1 ml-2 mb-2">
+    <div class="field ">
+<%= f.text_field :name,placeholder: "Name", autofocus: true, autocomplete: "Name",class:"text-decoration-none shadow-none col-md-9 offset-md-0  fs-5"%>
+</div>
+</div>
+<div class="border border-dark border-1 ml-2 mb-2">
+<div class="field "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-3 bi-envelope-fill" viewBox="0 0 16 16">
+  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+</svg>
+<%= f.email_field :email,placeholder: "Email", autofocus: true, autocomplete: "email",class:"text-decoration-none shadow-none col-md-9 offset-md-0 fs-5"%>
+</div>
+</div>
+ <% if @minimum_password_length %>
+    <em style="color:red; font-size:15px; margin-bottom:5px">(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+<div class="border border-dark border-1">
+    <div class=" field">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-2 bi-lock-fill" viewBox="0 0 16 16">
+  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+</svg>
+    <%= f.password_field :password,placeholder: "Password", autocomplete: "new-password",class:"text-decoration-none shadow-none col-md-9 offset-md-0 fs-5" %> 
+    </div>
+  </div>
+  <div class="border border-dark border-1 mt-2">
+    <div class=" field">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi me-2 bi-lock-fill" viewBox="0 0 16 16">
+  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+</svg>
+    <%= f.password_field :password_confirmation, placeholder:"Confirm Password",autocomplete: "new-password"%>
+    </div>
+  </div>
+<div class="field ">
+<%= f.select :user_role,User.user_roles.keys,placeholder: "Role", autofocus: true, autocomplete: "Role",class:"text-decoration-none ", style:"width:2rem"%>
+</div>
+</div>
+  
+<div class="btn-lg d-grid col-md-3 offset-md-4">
+  <div class="actions " style="text-align:center">
+    <%= f.submit "Sign up", class:"btn btn-primary rounded-0 col-md-12 offset-md-0"%>
+  </div>
+  <%
+=begin%>
+ </div>
+  <div class="actions d-grid gap-2 my-0 col-2 mx-auto btn-lg" style="text-align:center">
+    <%= f.submit "Sign up" %>
+  </div> 
+<%
+=end%>
+<% end %>
+
+<%= render "devise/shared/links" %>

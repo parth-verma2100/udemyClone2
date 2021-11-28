@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  watched_videos: 1
+  user: one
+  course: one
+
+two:
+  watched_videos: 1
+  user: two
+  course: two

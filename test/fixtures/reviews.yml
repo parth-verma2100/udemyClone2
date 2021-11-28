@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comment: MyString
+  date: 2021-11-27
+  user: one
+  course: one
+  enrollment: one
+
+two:
+  comment: MyString
+  date: 2021-11-27
+  user: two
+  course: two
+  enrollment: two

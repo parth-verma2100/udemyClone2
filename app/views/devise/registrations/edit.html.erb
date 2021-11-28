@@ -1,0 +1,68 @@
+<div class="ms-5 col-md-6">
+<h1 class="pt-3 pb-2 fw-bold" style="text-align:left;font-family:SuisseWorks,Georgia,Times,times new roman,serif,apple color emoji,segoe ui emoji,segoe ui symbol">Account 
+<%
+=begin%>
+ <%= resource_name.to_s.humanize %> 
+<%
+=end%>
+</h1>
+<div class="d-flex py-0 my-2 mb-4 border-bottom border-secondary">
+<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:left">
+Account security</span>
+<span class=" fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">Notifications settings</span>
+<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">Message settings</span>
+<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">API clients</span>
+<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">
+<a href="close">Close account</a>
+<%
+=begin%>
+ <%= link_to "Close account", %> 
+<%
+=end%>
+</span>
+</div>
+<%
+=begin%>
+ <hr class="d-grid col-md-6 offset-md-0 fw-bolder"> 
+<%
+=end%>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="field">
+    <%= f.label :email ,class:"fw-bold"%><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:" border text-decoration-none shadow-none col-md-4 mb-2 offset-md-0 fs-6", style:"height:40px" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password,class:"fw-bold" %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", class:"border text-decoration-none shadow-none col-md-4 offset-md-0 mb-2 fs-6",style:"height:45px" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation,class:"fw-bold" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"border text-decoration-none shadow-none col-md-4 offset-md-0 mb-2 fs-6" ,style:"height:45px" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password,class:"fw-bold" %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", class:"border text-decoration-none shadow-none col-md-4 mb-2 offset-md-0 fs-6" ,style:"height:45px" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+</div>

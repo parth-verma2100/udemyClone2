@@ -1,0 +1,56 @@
+<%= render "nav"%>
+
+<% if user_signed_in? %>
+<h1 style="text-align:center">Total Videos</h1>
+<% if @videos.size!=0 %>
+<ul>
+  <% @videos.each do |video| %>
+    <li>
+        <%= link_to video.title, course_video_path(video.course_id, video) %>
+    </li>
+  <% end %>
+</ul>
+<% else %>
+<h3 style="text-align:center; color:red">Oops!!! It seems that user has not added any videos here....</h3>
+<p style="text-align:center;">Go to <%= link_to "Home", root_path , class:"text-decoration-none"%></p>
+<% end %>
+<% else %>
+<h1 style="text-align:center">Total Videos</h1>
+<ul>
+  <% @videos.each do |video| %>
+    <li>
+        <%= link_to video.vid_title, course_video_path(video.course_id, video) %>
+    </li>
+  <% end %>
+<%= link_to "Add Video", new_course_video_path(@course)%> 
+<% end %>
+
+<%
+=begin%>
+ <h1 style="text-align:center">
+
+My Courses</h1>
+ <ul>
+  <% @reqcourse.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+<h3><%= link_to "New Course", new_course_path %></h3>
+<% else %>
+<h1 style="text-align:center">Total Courses</h1>
+<ul>
+  <% @courses.each do |course| %>
+    <li>
+        <%= link_to course.course_name, course %>
+    </li>
+  <% end %>
+</ul>
+
+<h1 style="text-align:center; padding:auto"><%= link_to "Login", new_user_session_path, class:"text-decoration-none"%> to enroll</h1>
+<% end %>
+<%= render "foot" %> 
+<%
+=end
+%>

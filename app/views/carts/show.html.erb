@@ -1,0 +1,15 @@
+<%= render 'courses/nav' %>
+<h1 style="text-align:center">Shopping Cart</h1>
+<% if @cart.empty? %>
+<h3 style="color:red">Please add item to cart</h3>
+<% else %>
+<ul>
+  <% @cart.each do |cart| %>
+    <li>
+        <%= link_to cart.course_name %>
+        <%= button_to "Remove from Cart", "remove_from_cart_path(id)" , method: :delete%>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+<%= render 'courses/foot'  %>

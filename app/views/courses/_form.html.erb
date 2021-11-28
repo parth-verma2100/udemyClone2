@@ -1,0 +1,63 @@
+<%= form_with model: course do |form| %>
+  <div>
+    <%= form.label :Course_Name %><br>
+    <%= form.text_field :course_name %>
+    <% course.errors.full_messages_for(:course_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :Description %><br>
+    <%= form.text_area :description %><br>
+    <% course.errors.full_messages_for(:course_desc).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :Cost %><br>
+    <%= form.number_field :cost %><br>
+    <% course.errors.full_messages_for(:course_cost).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+    <div>
+    <%= form.label :Category %><br>
+    <%= form.text_field :category %><br>
+    <% course.errors.full_messages_for(:course_category).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+    <div>
+    <%= form.label :Duration %><br>
+    <%= form.text_field :duration %><br>
+    <% course.errors.full_messages_for(:duration).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+    <div>
+    <%= form.label :Videos %><br>
+    <%= form.number_field :total_videos %><br>
+    <% course.errors.full_messages_for(:total_videos).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :Instructor %><br>
+    <%= form.number_field :user_id , value: current_user.id%><br>
+    <% course.errors.full_messages_for(:instructor_id).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <h2><%= form.submit %></h2>
+  </div>
+  <ul>
+   <li>
+  <%= link_to "Home", root_path%></li>
+  </ul>
+<% end %>
