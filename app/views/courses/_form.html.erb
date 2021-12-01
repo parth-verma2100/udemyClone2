@@ -24,8 +24,8 @@
   </div>
 
     <div>
-    <%= form.label :Category %><br>
-    <%= form.text_field :category %><br>
+    <%= form.label :Category ,class:"mt-3 mb-3"%>
+    <%= form.select :category,Course.categories.keys,placeholder: "Category", autofocus: true, autocomplete: "Category",class:"text-decoration-none "%><br>
     <% course.errors.full_messages_for(:course_category).each do |message| %>
       <div><%= message %></div>
     <% end %>

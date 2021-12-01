@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
       end 
       def add_to_cart
        id=params[:id].to_i
+       @cart = Course.find(session[:cart])
        session[:cart] << id unless session[:cart].include?(id)
        redirect_to course_path(id)
       end
@@ -20,7 +21,16 @@ class CoursesController < ApplicationController
       def load_cart
        @cart=Course.find(session[:cart])
       end 
-
+      def checkout
+        if user_signed_in?
+         for i in session[:cart]
+          Enrollment.create(watched_videos: Course.find(i).total_videos, user_id: current_user.id,course_id: i)
+          
+         end
+        end
+        session[:cart].clear
+        redirect_to root_path
+      end
        def index
        @courses=Course.all
        if user_signed_in?
@@ -46,7 +56,7 @@ class CoursesController < ApplicationController
        @course=Course.find(params[:id])#1
        @videos=@course.videos        
        if user_signed_in?
-       #  CartsController.addtocart(@course.id)#editted 
+       #CartsController.addtocart(@course.id)#editted 
         @enroll=Enrollment.where(user_id: current_user.id).distinct.to_a
         @reqcourse=[]
         @allcourseid=[]
@@ -85,7 +95,7 @@ class CoursesController < ApplicationController
        end
      end
       def destroy
-       @course=Course.find(params[:course_id])
+       @course=Course.find(params[:id])
        @course.destroy
        redirect_to root_path
       end

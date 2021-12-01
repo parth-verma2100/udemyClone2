@@ -1,18 +1,19 @@
 <%= render "nav"%>
 <% if user_signed_in? %> 
 <h1 style="text-align:center">All Courses</h1>
-<ul>
+<ul style="display:flex; flex-wrap:wrap;">
   <% @courses.each do |course| %>
-    <li>
-        <%= link_to course.course_name, course %>
-    </li>
-  <% end %>
+  <div class="card me-4 mb-3" style="width:18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none;"%></h5>
+    <p class="card-text"><%= course.description %></p>
+    
+  </div>
+  <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
+</div>
+<% end %>
 </ul>
-<%
-=begin%>
- <h3><%= link_to "New Course", new_course_path %></h3> 
-<%
-=end%>
 <% else %>
 <h1 style="text-align:center">Total Courses</h1>
 <ul>

@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
 <% if current_user.user_role.downcase == "student"%>
-<nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow p-3 mb-4 bg-body rounded">
-  <div class="container-fluid mt-0">
-    <h1 class="navbar-brand fw-bold" href="#"><%= link_to "UdemyClone", root_path , class:"text-decoration-none ", style:"color:black"%></h1>
+<nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow  p-3 mb-0 bg-body rounded">
+  <div class="container-fluid mt-0" >
+    <h1 class="navbar-brand fw-bold"><%= link_to "UdemyClone", root_path , class:"text-decoration-none ", style:"color:black"%></h1>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item">
@@ -12,17 +12,14 @@
         <input class="input-group border-dark me-auto mb-0 rounded-pill" style="padding-right:21rem; padding-left:2rem" type="search" placeholder="Search for anything" aria-label="Search" >
       </form>
       </ul>
-      <ul class="navbar-nav me-0 mb-2 mb-lg-0">
-        <li class="nav-item me-1">
+      <ul class="navbar-nav me-1 mb-2 mb-lg-0">
+        <li class="nav-item me-4">
           <a class="nav-link active" aria-current="page" href="#">Udemy Business</a>
         </li>
-        <li class="nav-item me-1">
-          <a class="nav-link active" aria-current="page" href="#">Teach on Udemy</a>
-        </li>
-        <li class="nav-item me-1 mt-2">
+        <li class="nav-item me-4 mt-2">
          <%= link_to "My Learning", courses_path, class:"text-decoration-none ", style:"color:black"%>
         </li>
-        <li class="nav-item me-3 ms-2 mt-2">
+        <li class="nav-item me-4 ms-2 mt-2">
         <%= link_to "Cart",carts_show_path ,class:"text-decoration-none",style:"color:black"%>
         <%
 =begin%>
@@ -34,6 +31,7 @@
         </li>
         
         <li class="nav-item me-2">
+        <div class="btn-group">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <%
 =begin%>
@@ -43,11 +41,22 @@
 </svg> 
 <%
 =end%>
-           <button class="btn btn-dark" type="button">
-           
-           <%= link_to current_user.name, destroy_user_session_path, method: :delete ,class:"text-decoration-none", style:"color:white"%>
+           <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <%= link_to current_user.name, "destroy_user_session_path", class:"text-decoration-none ", style:"color:white"%>
           </button>
+           <ul class="dropdown-menu">
+    <li><%= link_to "My Learning", courses_path,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
+    <li><%= link_to "My Cart",carts_show_path ,class:"text-decoration-none dropdown-item",style:"color:black"%></li>
+    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+    <li><a class="dropdown-item" href="#">Notification</a></li>
+    <li><a class="dropdown-item" href="#">Messages</a></li>
+    <li><a class="dropdown-item" href="#">Account</a></li>
+    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete ,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
+  </ul>
         </div>
+        </div>
+        
         </li>
         <% elsif current_user.user_role.downcase == "instructor"%>
   <nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow p-3 mb-4 bg-body rounded">
@@ -81,6 +90,7 @@
         </li>
         
         <li class="nav-item me-2">
+        <div class="btn-group">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <%
 =begin%>
@@ -90,10 +100,19 @@
 </svg> 
 <%
 =end%>
-           <button class="btn btn-dark" type="button">
-           
-           <%= link_to current_user.name, destroy_user_session_path, method: :delete ,class:"text-decoration-none", style:"color:white"%>
+           <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <%= link_to current_user.name, "destroy_user_session_path", class:"text-decoration-none ", style:"color:white"%>
           </button>
+           <ul class="dropdown-menu">
+    <li><%= link_to "My Course", courses_path,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
+    <li><a class="dropdown-item" href="#">Dashboard</a></li>
+    <li><a class="dropdown-item" href="#">Notification</a></li>
+    <li><a class="dropdown-item" href="#">Messages</a></li>
+    <li><a class="dropdown-item" href="#">Account</a></li>
+    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete ,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
+  </ul>
+        </div>
         </div>
         </li>
         <% end %>

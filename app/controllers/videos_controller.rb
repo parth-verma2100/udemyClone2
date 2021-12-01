@@ -38,7 +38,6 @@ class VideosController < ApplicationController
       redirect_to course_path(@course)
         # @video = current_course.videos
     end
-    
     private
       def video_params
         params.require(:video).permit(:title,:url,:course_id)

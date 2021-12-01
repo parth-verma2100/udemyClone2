@@ -4,8 +4,24 @@
  <%= debug session[:cart]  %> 
 <%
 =end%>
+<nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow p-0 mb-0 bg-body rounded">
+<div class="bg-dark container-fluid">
+  <footer class="px-5 mt-5 pb-0" style="width:70rem">
+    <div class="row">
+        <h1 style="color:white"><%= @course.course_name %></h1>
+        <h5 style="color:white"><%= @course.description %></h5>
+        <p style="color:white">Created by <%= User.find(@course.user_id).name%></p>
+    </div>
+    <div class="d-flex justify-content-between py-5 my-2 border-top" style="width:65rem;">
+    <h2 style="color:white">Cost-<%= @course.cost %></h2>
+    <h2 style="color:white">Duration-<%= @course.duration.split()[0] %> hours</h2>
+    
+    </div>
+  </footer>
+</div>
+</nav>
 <% if user_signed_in?  %>
-<% if current_user.user_role.downcase =="instructor"%>
+<% if (current_user.user_role.downcase =="instructor" && @course.user_id==current_user.id) %>
 <h2>Description: </h2><%= @course.description %>
   <h2> Category: </h2><%= @course.category %>
   <h2> Cost: </h2><%= @course.cost %>
@@ -17,6 +33,7 @@
                   method: :delete,
                   data: { confirm: "Are you sure" } %> 
   </ul>
+
 <% else %>
  <% if @reqcourse.include? @course.id %>
 <h2>Description: </h2><%= @course.description %>

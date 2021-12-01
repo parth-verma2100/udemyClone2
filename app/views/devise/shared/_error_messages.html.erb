@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" style="text-align:center">
+  <div id="error_explanation" style="text-align:center; color:red">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,

@@ -7,9 +7,9 @@
   <% @cart.each do |cart| %>
     <li>
         <%= link_to cart.course_name %>
-        <%= button_to "Remove from Cart", "remove_from_cart_path(id)" , method: :delete%>
     </li>
   <% end %>
+  <%= link_to "Checkout", checkout_path , class: "btn btn-primary btn-lg mt-4"%>
 </ul>
 <% end %>
 <%= render 'courses/foot'  %>

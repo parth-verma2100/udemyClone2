@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_one :enrollments 
   validates :name, presence: true
-  enum user_role: {Guest: "Guest", Instructor: "Instructor", Student: "Student"}
+  enum user_role: {Instructor: "Instructor", Student: "Student"}
   scope :instructor, -> { where(role: 'instructor') } #not understood
   scope :student, -> { where(role: 'student') }        
 end
