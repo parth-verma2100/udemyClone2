@@ -17,11 +17,12 @@ gem 'jquery-rails', '~> 4.4'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  gem 'sqlite3', '1.4.2'
+  
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
+  gem 'sqlite3', '1.4.2'
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
@@ -35,6 +36,6 @@ group :test do
   gem 'webdrivers'
 end
 group :production do
- gem 'pg','1.2.3'
+ gem 'pg'
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
