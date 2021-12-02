@@ -47,6 +47,13 @@
     <% end %>
   </div>
   <div>
+    <%= form.label :Image %><br>
+    <%= form.file_field :image %><br>
+    <% course.errors.full_messages_for(:image).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
     <%= form.label :Instructor %><br>
     <%= form.number_field :user_id , value: current_user.id%><br>
     <% course.errors.full_messages_for(:instructor_id).each do |message| %>

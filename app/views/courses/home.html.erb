@@ -4,7 +4,7 @@
 <ul style="display:flex; flex-wrap:wrap;">
   <% @courses.each do |course| %>
   <div class="card me-4 mb-3" style="width:18rem;">
-  <img src="..." class="card-img-top" alt="...">
+  <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url ,target: '_blank') if course.image? %>
   <div class="card-body">
     <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none;"%></h5>
     <p class="card-text"><%= course.description %></p>
@@ -16,12 +16,17 @@
 </ul>
 <% else %>
 <h1 style="text-align:center">Total Courses</h1>
-<ul>
+<ul style="display:flex; flex-wrap:wrap;">
   <% @courses.each do |course| %>
-    <li>
-        <%= link_to course.course_name, course %>
-    </li>
-  <% end %>
+  <div class="card me-4 mb-3" style="width:18rem;">
+  <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url, target: '_blank') if course.image? %>
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none;"%></h5>
+    <p class="card-text"><%= course.description %></p>
+  </div>
+  <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
+</div>
+<% end %>
 </ul>
 <h1 style="text-align:center; padding:auto"><%= link_to "Login", new_user_session_path, class:"text-decoration-none"%> to enroll</h1>
 <% end %>

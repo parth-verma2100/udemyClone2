@@ -7,19 +7,12 @@
 =end%>
 </h1>
 <div class="d-flex py-0 my-2 mb-4 border-bottom border-secondary">
-<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:left">
+<span class="fs-6 pt-3 pb-1 me-4 fw-bold" style="text-align:left">
 Account security</span>
-<span class=" fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">Notifications settings</span>
-<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">Message settings</span>
-<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">API clients</span>
-<span class="fs-6 pt-3 pb-1 me-3 fw-bold" style="text-align:center">
-<a href="close">Close account</a>
-<%
-=begin%>
- <%= link_to "Close account", %> 
-<%
-=end%>
-</span>
+<span class=" fs-6 pt-3 pb-1 me-4 fw-bold" style="text-align:center">Notifications settings</span>
+<span class="fs-6 pt-3 pb-1 me-4 fw-bold" style="text-align:center">Message settings</span>
+<span class="fs-6 pt-3 pb-1 me-4 fw-bold" style="text-align:center">API clients</span>
+<span class="fs-6 pt-3 pb-1 me-4 fw-bold" style="text-align:center">
 </div>
 <%
 =begin%>
@@ -38,11 +31,11 @@ Account security</span>
   <% end %>
 
   <div class="field">
-    <%= f.label :password,class:"fw-bold" %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password,class:"fw-bold" %> <i style="color:red">(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password", class:"border text-decoration-none shadow-none col-md-4 offset-md-0 mb-2 fs-6",style:"height:45px" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em style="color:red"><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
@@ -52,17 +45,14 @@ Account security</span>
   </div>
 
   <div class="field">
-    <%= f.label :current_password,class:"fw-bold" %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password,class:"fw-bold" %> <i style="color:red">(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password", class:"border text-decoration-none shadow-none col-md-4 mb-2 offset-md-0 fs-6" ,style:"height:45px" %>
   </div>
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update" , class:"btn btn-primary"%>
   </div>
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
+<br>
+<h4><%= link_to "Close Account",registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class:"fw-bold", style:"color:red;text-decoration:none"%></h4>
 <%= link_to "Back", :back %>
 </div>

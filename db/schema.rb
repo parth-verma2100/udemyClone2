@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_052353) do
+ActiveRecord::Schema.define(version: 2021_12_02_051209) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_052353) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "category", default: "Technology"
+    t.string "image"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -39,6 +40,23 @@ ActiveRecord::Schema.define(version: 2021_11_29_052353) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_enrollments_on_course_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
+    t.integer "course_id"
+    t.integer "order_id"
+    t.integer "cost"
+    t.decimal "total"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.decimal "subtotal"
+    t.decimal "total"
   end
 
   create_table "reviews", force: :cascade do |t|

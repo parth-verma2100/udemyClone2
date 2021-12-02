@@ -35,6 +35,8 @@ import "../pages/datepicker"
 import "../pages/form-validation"
 //= require jquery.validate.additional-methods 
 //= require jquery.validate
+//= require jquery
+//= require jquery_ujs
 
 Rails.start()
 Turbolinks.start()

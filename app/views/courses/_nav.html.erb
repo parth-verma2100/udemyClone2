@@ -51,7 +51,7 @@
     <li><a class="dropdown-item" href="#">Notification</a></li>
     <li><a class="dropdown-item" href="#">Messages</a></li>
     <li><a class="dropdown-item" href="#">Account</a></li>
-    <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+    <li><%= link_to "Edit Profile", edit_user_registration_path,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
     <li><%= link_to "Logout", destroy_user_session_path, method: :delete ,class:"text-decoration-none dropdown-item", style:"color:black"%></li>
   </ul>
         </div>

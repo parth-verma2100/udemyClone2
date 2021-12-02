@@ -21,16 +21,7 @@ class CoursesController < ApplicationController
       def load_cart
        @cart=Course.find(session[:cart])
       end 
-      def checkout
-        if user_signed_in?
-         for i in session[:cart]
-          Enrollment.create(watched_videos: Course.find(i).total_videos, user_id: current_user.id,course_id: i)
-          
-         end
-        end
-        session[:cart].clear
-        redirect_to root_path
-      end
+      
        def index
        @courses=Course.all
        if user_signed_in?
@@ -54,20 +45,26 @@ class CoursesController < ApplicationController
       end
       def show  
        @course=Course.find(params[:id])#1
-       @videos=@course.videos        
+       @videos=@course.videos     
+       @order_item=current_order.order_items.new   
        if user_signed_in?
        #CartsController.addtocart(@course.id)#editted 
         @enroll=Enrollment.where(user_id: current_user.id).distinct.to_a
         @reqcourse=[]
         @allcourseid=[]
+        @ordercourse=[]
+        @order=current_order.order_items
         for i in @enroll
            if @course.id==i.course_id
             @reqcourse.push(@course.id)
            end
         end
+        for i in @order
+           @ordercourse.push(i.course.id)
+         
+       end
        end
        @instructor=User.find(@course.user_id)
-       
       end
       def new
        @course=Course.new
@@ -101,7 +98,7 @@ class CoursesController < ApplicationController
       end
       private
        def course_params
-         params.require(:course).permit(:course_name, :description, :total_videos, :duration, :cost,:category, :user_id,)
+         params.require(:course).permit(:course_name, :description, :total_videos, :duration, :cost,:category, :user_id,:image)
        end
        
 end

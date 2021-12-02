@@ -4,7 +4,9 @@
  <%= debug session[:cart]  %> 
 <%
 =end%>
-<nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow p-0 mb-0 bg-body rounded">
+<%
+=begin%>
+ <nav class="navbar navbar-expand-lg d-flex navbar-light bg-white shadow p-0 mb-0 bg-body rounded">
 <div class="bg-dark container-fluid">
   <footer class="px-5 mt-5 pb-0" style="width:70rem">
     <div class="row">
@@ -19,54 +21,85 @@
     </div>
   </footer>
 </div>
-</nav>
+</nav> 
+<%
+=end%>
 <% if user_signed_in?  %>
 <% if (current_user.user_role.downcase =="instructor" && @course.user_id==current_user.id) %>
-<h2>Description: </h2><%= @course.description %>
-  <h2> Category: </h2><%= @course.category %>
-  <h2> Cost: </h2><%= @course.cost %>
-  <h2>Duration: </h2><%= @course.duration %>
-  <h2>Instructor: </h2><%= @instructor.name %>
-  <h3><%= link_to "Videos", course_videos_path(@course) %></h3>
+<%
+=begin%>
+ <%= link_to(image_tag(@course.image.thumb.url, alt: 'Image',:size => "286x180"), @course.image.url, target: '_blank') if @course.image? %> 
+<%
+=end%>
+<h2>Description: </h2><%= @course.description %></h2>
+  <h2> Category: </h2><%= @course.category %></h2>
+  <h2> Cost: </h2><%= @course.cost %></h2>
+  <h2>Duration: </h2><%= @course.duration %></h2>
+  <h2>Instructor: </h2><%= @instructor.name %></h2>
+  <h3><%= link_to "Videos", course_videos_path(@course) , class:"btn btn-primary ms-2"%> 
+ <%= link_to "Home", root_path, class:"btn btn-primary ms-2"%>
+ <%= link_to "Add Video",new_course_video_path(@course),class:"btn btn-primary ms-2"%>
+  <%= link_to "Edit", edit_course_path(@course),class:"btn btn-primary ms-2"%>
+  <%= link_to "Delete", course_path(@course),
+                  method: :delete,
+                  data: { confirm: "Are you sure" } , class:"btn btn-primary ms-2"%> 
+  </h3>
   <ul>
-    <li><%= link_to "Home", root_path%> | <%= link_to "Add Video",new_course_video_path(@course) %> | <%= link_to "Edit", enroll_course_path%> |<%= link_to "Delete", course_path(@course),
+    <li><%= link_to "Home", root_path%> | <%= link_to "Add Video",new_course_video_path(@course) %> | <%= link_to "Edit", edit_course_path(@course)%> |<%= link_to "Delete", course_path(@course),
                   method: :delete,
                   data: { confirm: "Are you sure" } %> 
   </ul>
 
 <% else %>
  <% if @reqcourse.include? @course.id %>
-<h2>Description: </h2><%= @course.description %>
-  <h2> Category: </h2><%= @course.category %>
-  <h2> Cost: </h2><%= @course.cost %>
-  <h2>Duration: </h2><%= @course.duration %>
-  <h2>Instructor: </h2><%= @instructor.name %>
- <h3><%= link_to "Videos", course_videos_path(@course) %></h3>
-  <ul>
-    <li><%= link_to "Home", root_path%></li>
-  </ul>
+<%
+=begin%>
+ <%= link_to(image_tag(@course.image.thumb.url, alt: 'Image',:size => "286x180"), @course.image.url, target: '_blank') if @course.image? %> 
+<%
+=end%>
+<h2>Description: </h2><%= @course.description %></h2>
+  <h2> Category: </h2><%= @course.category %></h2>
+  <h2> Cost: </h2><%= @course.cost %></h2>
+  <h2>Duration: </h2><%= @course.duration %></h2>
+  <h2>Instructor: </h2><%= @instructor.name %></h2><br>
+  <h3><%= link_to "Videos", course_videos_path(@course) , class:"btn btn-primary ms-2"%> 
+ <%= link_to "Home", root_path, class:"btn btn-primary ms-2"%>
+  </h3>
  <% else %>
+ <%
+=begin%>
+ <%= link_to(image_tag(@course.image.thumb.url, alt: 'Image',:size => "286x180"), @course.image.url, target: '_blank') if @course.image? %> 
+<%
+=end%>
  <h2>Description: </h2><%= @course.description %>
   <h2> Category: </h2><%= @course.category %>
   <h2> Cost: </h2><%= @course.cost %>
   <h2>Duration: </h2><%= @course.duration %>
   <h2>Instructor: </h2><%= @instructor.name %>
   <ul>
-    <li><%= link_to "Home", root_path%> | <%= link_to "Enroll", enroll_course_path%> | <% if @cart.include?(@course) %>
-     <%= link_to "Go to Cart",carts_show_path%>
-    <% else %> 
-    <%= link_to "Add to Cart", add_to_cart_path(@course.id), method: :post %>
-    <% end %>
-<%
+    <%
 =begin%>
-     
-    <%= button_to "Add #{@course.name} to cart", restaurant_product_line_items_path(:course_id => @course.id) %> 
+ <%= link_to "Enroll", enroll_course_path%> |  
 <%
 =end%>
+    <% if @ordercourse.include?(@course.id) %>
+     <%= link_to "Go to Cart",carts_show_path ,class:"btn btn-primary"%>
+    <% else %> 
+    <%= form_for @order_item, remote: true do |f|  %>
+    <%= f.hidden_field :course_id, :value => @course.id%>
+    <%= link_to "Home", root_path, class:"btn btn-primary"%> 
+    <%= f.submit "Add to new cart" ,class:"btn btn-primary"%>
+    <% end %>
+    <% end %>
   </ul>
  <% end %> 
  <% end %>
 <% else %>
+<%
+=begin%>
+ <%= link_to(image_tag(@course.image.thumb.url, alt: 'Image',:size => "286x180"), @course.image.url, target: '_blank') if @course.image? %> 
+<%
+=end%>
 <h2>Description: </h2><%= @course.description %>
 <h2> Category: </h2><%= @course.category %>
 <h2> Cost: </h2><%= @course.cost %>
@@ -80,12 +113,6 @@
                   data: { confirm: "Are you sure" } %> 
                    </li>
 </ul> 
-<%
-=end%>
-<%
-=begin%>
- <h2>Add Videos</h2>
-<%= render "videos/form"%> 
 <%
 =end%>
 <% end %>
