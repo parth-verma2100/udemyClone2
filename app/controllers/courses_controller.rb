@@ -1,26 +1,26 @@
 class CoursesController < ApplicationController
-    before_action :initialize_session
-    before_action :load_cart
+    # before_action :initialize_session
+    # before_action :load_cart
       def home
        @courses=Course.all
       end 
-      def add_to_cart
-       id=params[:id].to_i
-       @cart = Course.find(session[:cart])
-       session[:cart] << id unless session[:cart].include?(id)
-       redirect_to course_path(id)
-      end
-      def remove_from_cart
-       id=params[:id].to_i
-       session[:cart].delete(id)
-       redirect_to root_path
-      end
-      def initialize_session
-       session[:cart] ||=[]
-      end 
-      def load_cart
-       @cart=Course.find(session[:cart])
-      end 
+      # def add_to_cart
+      #  id=params[:id].to_i
+      #  @cart = Course.find(session[:cart])
+      #  session[:cart] << id unless session[:cart].include?(id)
+      #  redirect_to course_path(id)
+      # end
+      # def remove_from_cart
+      #  id=params[:id].to_i
+      #  session[:cart].delete(id)
+      #  redirect_to root_path
+      # end
+      # def initialize_session
+      #  session[:cart] ||=[]
+      # end 
+      # def load_cart
+      #  @cart=Course.find(session[:cart])
+      # end 
       
        def index
        @courses=Course.all
@@ -61,8 +61,7 @@ class CoursesController < ApplicationController
         end
         for i in @order
            @ordercourse.push(i.course.id)
-         
-       end
+        end
        end
        @instructor=User.find(@course.user_id)
       end
@@ -90,7 +89,7 @@ class CoursesController < ApplicationController
        else
          render :new
        end
-     end
+      end
       def destroy
        @course=Course.find(params[:id])
        @course.destroy

@@ -36,7 +36,7 @@ class VideosController < ApplicationController
       @video = @course.videos.find(params[:id])
       @video.destroy
       redirect_to course_path(@course)
-        # @video = current_course.videos
+      # @video = current_course.videos
     end
     private
       def video_params

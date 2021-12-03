@@ -16,31 +16,26 @@
 <% end %> 
 <%
 =end%>
-
-
 <% if @order_items.empty? %>
-<h3 style="color:red">Please add item to cart</h3>
+  <h3 style="color:red">Please add item to cart</h3>
 <% else %>
-<ul style="display:flex; flex-wrap:wrap;">
-  <% @order_items.each do |cart| %>
-  <div class="card me-4 mb-3" style="width:18rem;">
-  <%= link_to(image_tag(cart.course.image.thumb.url, alt: 'Image',:size => "286x180"), cart.course.image.url, target: '_blank') if cart.course.image? %>
-  <div class="card-body">
-  
-    <h5 class="card-title"><%= link_to cart.course.course_name, style:"text-decoration:none;"%></h5>
-    <p class="card-text"><%= cart.course.description %></p>
-    <%= form_for cart, remote: true do |f| %>
+  <ul style="display:flex; flex-wrap:wrap;">
+    <% @order_items.each do |cart| %>
+    <div class="card me-4 mb-3" style="width:18rem;">
+      <%= link_to(image_tag(cart.course.image.thumb.url, alt: 'Image',:size => "286x180"), cart.course.image.url, target: '_blank') if cart.course.image? %>
+     <div class="card-body">
+      <h5 class="card-title"><%= link_to cart.course.course_name, style:"text-decoration:none;"%></h5>
+      <p class="card-text"><%= cart.course.description %></p>
+      <%= form_for cart, remote: true do |f| %>
         <%= link_to "Remove Items", order_item_path(cart), method: :delete, remote: true, class: "btn btn-primary mb-0 ms-5",style:"float:bottom;"%>
+      <% end %>
+     </div>
+    </div>
     <% end %>
-  </div>
-  
-  </div>
-  
+  </ul>
+<% end %>
+  <h3 style="color:red">Total Cost:<%= current_order.subtotal%></h3>
+  <% if @order_items.size!=0%>
+    <%= link_to "Checkout", checkout_path, class: "btn btn-primary btn-lg mt-4 ms-5"%>
   <% end %>
-</ul>
-<% end %>
-<h3 style="color:red">Total Cost:<%= current_order.subtotal%></h3>
-<% if @order_items.size!=0%>
-<%= link_to "Checkout", checkout_path , class: "btn btn-primary btn-lg mt-4 ms-5"%>
-<% end %>
 <%= render 'courses/foot'  %>

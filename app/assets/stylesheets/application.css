@@ -12,4 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require custom.min
+ *= require custom-style
+ *= require custom
  */

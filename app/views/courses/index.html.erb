@@ -1,73 +1,58 @@
 <%= render "nav"%>
 <% if user_signed_in? %>
-<% if current_user.user_role.downcase == "instructor"%>
- <h1 style="text-align:center; font-style:bolder">
-Created Courses</h1>
-<% if @usercourse.size==0 %>
-<h3 style="color:red">
-No Courses Created yet...</h3>
-Create new course <%= link_to "here", new_course_path, style:"text-decoration:none" %>
-<% else  %>
- <ul style="display:flex; flex-wrap:wrap;">
-  <% @usercourse.each do |course| %>
-  <% if course.user_id==current_user.id %>
-  <div class="card me-4 mb-3" style="width:18rem;">
-  <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url, target: '_blank') if course.image? %>
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none"%></h5>
-    <p class="card-text"><%= course.description %></p>
-  </div>
-  <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
-</div>
-  <% end %>  
-  <% end %>
-</ul>
-Create new course <%= link_to "here", new_course_path, style:"text-decoration:none"%>
-<% end %>
+  <% if current_user.user_role.downcase == "instructor"%>
+     <h1 style="text-align:center; font-style:bolder">Created Courses</h1>
+     <% if @usercourse.size==0 %>
+       <h3 style="color:red">No Courses Created yet...</h3>Create new course <%= link_to "here", new_course_path, style:"text-decoration:none" %>
+     <% else  %>
+       <ul style="display:flex; flex-wrap:wrap;">
+       <% @usercourse.each do |course| %>
+         <% if course.user_id==current_user.id %>
+           <div class="card me-4 mb-3" style="width:18rem;">
+             <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url, target: '_blank') if course.image? %>
+             <div class="card-body">
+               <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none"%></h5>
+               <p class="card-text"><%= course.description %></p>
+             </div>
+             <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
+           </div>
+         <% end %>  
+       <% end %>
+       </ul>
+       Create new course <%= link_to "here", new_course_path, style:"text-decoration:none"%>
+     <% end %>
+  <% else %>
+    <h1 style="text-align:center">My Courses</h1>
+    <ul style="display:flex; flex-wrap:wrap;">
+    <% @reqcourse.each do |course| %>
+      <div class="card me-4 mb-3" style="width:18rem;">
+        <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url, target: '_blank') if course.image? %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none"%></h5>
+          <p class="card-text"><%= course.description %></p>
+        </div>
+        <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
+      </div>
+    <% end %>
+    </ul> 
+  <% end %> 
 <% else %>
-<h1 style="text-align:center">
-My Courses</h1>
- <ul style="display:flex; flex-wrap:wrap;">
-  <% @reqcourse.each do |course| %>
-    <div class="card me-4 mb-3" style="width:18rem;">
-  <%= link_to(image_tag(course.image.thumb.url, alt: 'Image',:size => "286x180"), course.image.url, target: '_blank') if course.image? %>
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to course.course_name, course ,style:"text-decoration:none"%></h5>
-    <p class="card-text"><%= course.description %></p>
-    
-  </div>
-  <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
-</div>
+  <h1 style="text-align:center">Total Courses</h1>
+    <% if @courses.size==0 %>
+      <h3 style="color:red">No Courses Published yet...</h3>
+    <% end %>
+    <ul style="display:flex; flex-wrap:wrap;">
+      <% @courses.each do |course| %>
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to course.course_name, course %></h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%> 
+        </div>
   <% end %>
 </ul>
-<% end %>
-<% else %>
-
-<h1 style="text-align:center">Total Courses</h1>
-<% if @courses.size==0 %>
-<h3 style="color:red">
-No Courses Published yet...</h3>
-<% end %>
-<ul style="display:flex; flex-wrap:wrap;">
-  <% @courses.each do |course| %>
-  <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= link_to course.course_name, course %></h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <%= link_to "Go to course", course ,style:"text-decoration:none;", class:"btn btn-primary m-3"%>
-</div>
-    <%
-=begin%>
- <li>
-        <%= link_to course.course_name, course %>
-    </li> 
-<%
-=end%>
-  <% end %>
-</ul>
-
 <h1 style="text-align:center; padding:auto"><%= link_to "Login", new_user_session_path, class:"text-decoration-none"%> to enroll</h1>
 <% end %>
 <%= render "foot" %>

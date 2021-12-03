@@ -20,18 +20,8 @@ class EnrollmentsController < ApplicationController
      end
     end
     def create
-     #@course=Course.find(params[:id])  #current course id
-     #@user=current_user # current user logged
-     #if couseid present in current user
-    #then print Already Enrolled
-    #else create enrollment
-    #flash msg
-    #carrier wave
-    #1- If user ne course enrool krdia to dont show in all course
-    #2- Do the validation if user id and course id already exist
-    #3-If course is showing the show that go to course...
      @course=Course.find(params[:id])
-     @enroll =Enrollment.create(watched_videos:@course.total_videos,user_id: current_user.id,  course_id: @course.id)#current assignment for enrollment 
+     @enroll =Enrollment.create(watched_videos:@course.total_videos,user_id: current_user.id,  course_id: @course.id)
      if @enroll.save
        redirect_to root_path
      else

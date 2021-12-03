@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
       def show
         @order_items=current_order.order_items
-        @cart = Course.find(session[:cart]) 
       end
       def checkout
         if user_signed_in?
@@ -11,7 +10,7 @@ class CartsController < ApplicationController
          end
         end
         @order_items.clear
-        redirect_to root_path
+        render 'carts/final'
       end
       def destroy
         @cart = @current_cart
