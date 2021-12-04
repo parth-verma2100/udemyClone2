@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'carts/show'
-  devise_for :users
-  devise_for :instructors
+  # devise_for :users
+  # devise_for :instructors
   resources :enrollments
   resources :order_items
   resources :carts 
