@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'carts/show'
+  root 'courses#home'
+  
   # devise_for :users
   # devise_for :instructors
   resources :enrollments
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   resources :courses do
    resources :videos
   end
-  root 'courses#home'
+  get 'carts/show'
   get '/courses/my_enroll/:id', to: 'courses#create', as:'enroll_regist'
   get '/courses/enroll/:id', to: 'enrollments#create', as:'enroll_course'
   get 'cart/checkout', to:'carts#checkout', as:'checkout'
