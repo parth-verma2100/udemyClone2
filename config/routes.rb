@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  root 'courses#home'
   resources :enrollments
   resources :order_items
   resources :carts 
   resources :courses do
    resources :videos
   end
+  root 'courses#home'
   get 'carts/show'
   get '/courses/my_enroll/:id', to: 'courses#create', as:'enroll_regist'
   get '/courses/enroll/:id', to: 'enrollments#create', as:'enroll_course'
