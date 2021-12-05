@@ -18,7 +18,6 @@ gem 'jquery-rails', '~> 4.4'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  
   gem 'sqlite3', '1.4.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
